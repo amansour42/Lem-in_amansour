@@ -6,7 +6,7 @@
 #    By: amansour <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/30 10:19:33 by amansour          #+#    #+#              #
-#    Updated: 2017/11/30 11:45:50 by amansour         ###   ########.fr        #
+#    Updated: 2017/12/01 16:07:01 by amansour         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ INCLUD  = ./include
 LIB = libft/libft.a
 
 SRC = checking.c delete_rooms.c file.c error.c link.c\
-	main.c map.c print_ants.c room.c\
+	main.c map.c print_ants.c room.c path.c path2.c\
 
 OBJ = $(addprefix $(OBJ_PATH)/,$(SRC:.c=.o))
 

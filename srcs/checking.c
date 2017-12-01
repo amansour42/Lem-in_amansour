@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/30 11:38:59 by amansour          #+#    #+#             */
-/*   Updated: 2017/11/30 16:36:36 by amansour         ###   ########.fr       */
+/*   Updated: 2017/12/01 14:41:45 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	check_nbr_ants(t_env *e)
 	free(line);
 }
 
-char*		check_room(t_env *e)
+char		*check_room(t_env *e)
 {
 	char	*line;
 	int		flag;
@@ -49,12 +49,12 @@ char*		check_room(t_env *e)
 			(!flag) ? fill_room(e, line, last_flag) : 0;
 			last_flag = flag;
 		}
-		free(line);
+		//free(line);
 	}
 	return (line);
 }
 
-static t_room	*find_room(t_env *e, char *str)
+t_room		*find_room(t_env *e, char *str)
 {
 	t_room *r;
 
@@ -68,7 +68,7 @@ static t_room	*find_room(t_env *e, char *str)
 	return (r);
 }
 
-void	check_link(t_env *e, char *line)
+void		check_link(t_env *e, char *line)
 {
 	t_room	*r1;
 	t_room	*r2;

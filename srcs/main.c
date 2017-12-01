@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/30 10:29:31 by amansour          #+#    #+#             */
-/*   Updated: 2017/11/30 16:45:44 by amansour         ###   ########.fr       */
+/*   Updated: 2017/12/01 16:25:55 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,10 @@ int main(void)
 			free(e.end);
 		ft_error(INVALIDMAP);
 	}
+	printf("START = %s, END = %s\n", e.start, e.end);
 	check_link(&e, line);
+	find_path(&e);
+	find_inverse_path(&e);
 	print_ants(&e);
 	return (0);
 }

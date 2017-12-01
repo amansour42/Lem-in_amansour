@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/10 14:55:04 by amansour          #+#    #+#             */
-/*   Updated: 2017/11/30 16:35:05 by amansour         ###   ########.fr       */
+/*   Updated: 2017/12/01 16:11:53 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,11 @@
 # define ANTHILL		e->f
 # define END			e->end
 # define START			e->start
-# define ANTNBR			"ANTS' NUMBER ERROR!\n"
+# define PATH			e->path
+# define LINK			e->path->link
+# define INVPATH		e->invpath
+# define INVLINK		e->invpath->link
+#define ANTNBR			"ANTS' NUMBER ERROR!\n"
 # define INVALIDMAP		"INVALID MAP\n"
 # define NOSTART		"NO COMMAND START\n"
 # define NOEND			"NO COMMAND END\n"
@@ -42,6 +46,13 @@ typedef struct		s_link
 	char			*name;
 	struct s_link	*next;
 }					t_link;
+
+typedef struct		s_path
+{
+	t_link			*link;
+	int				len;
+	struct s_path	*next;
+}					t_path;
 
 typedef struct		s_room
 {
@@ -62,6 +73,8 @@ typedef struct		s_env
 	int				a_nbr;
 	char			*start;
 	char			*end;
+	t_path			*path;
+	t_path			*invpath;
 	int				flag;
 }					t_env;
 
@@ -85,6 +98,7 @@ int					ft_error(char *str);
  */
 void				fill_room(t_env *e, char *str, int end);
 void				delete_room(t_room **r);
+t_room				*find_room(t_env *e, char *line);
 /*
  ** map
  */
@@ -105,4 +119,9 @@ void				delete_file(t_file **f);
  */
 void				delete_link(t_link **link);
 void				add_link(t_link **link, char *str);
+/*
+ ** PATH
+ */
+void				find_path(t_env *e);
+void				find_inverse_path(t_env *e);
 #endif
