@@ -16,6 +16,8 @@ int main(void)
 {
 	t_env	e;
 	char	*line;
+    t_room  *r;
+    t_link  *l;
 
 	init_map(&e);
 	check_nbr_ants(&e);
@@ -33,7 +35,22 @@ int main(void)
 	printf("START = %s, END = %s\n", e.start, e.end);
 	check_link(&e, line);
 	find_path(&e);
-	find_inverse_path(&e);
-	print_ants(&e);
+    //find_inverse_path(&e);
+	//print_ants(&e);
+    //r = find_room(&e, "7");
+    r = e.r;
+    while (r)
+    {
+        printf("ROOM NAME = %s ==>", r->name);
+        l = r->link;
+        while (l)
+        {
+            printf("LINK  = %s|", l->name);
+            l = l->next;
+         }
+        printf("\n");
+        r = r->next;
+    }
+    print_ants(&e);
 	return (0);
 }

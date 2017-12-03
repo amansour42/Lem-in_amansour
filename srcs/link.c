@@ -21,6 +21,7 @@ void		add_link(t_link **tube, char *str)
 	if ((tmp = (t_link*)malloc(sizeof(t_link))))
 	{
 		tmp->name = ft_strdup(str);
+        tmp->pass = 0;
 		tmp->next = NULL;
 		if (!*tube)
 			*tube = tmp;

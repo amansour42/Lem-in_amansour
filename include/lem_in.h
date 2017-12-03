@@ -44,7 +44,8 @@ typedef struct			s_file
 typedef struct		s_link
 {
 	char			*name;
-	struct s_link	*next;
+    int             pass;
+    struct s_link	*next;
 }					t_link;
 
 typedef struct		s_path

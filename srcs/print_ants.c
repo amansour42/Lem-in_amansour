@@ -35,14 +35,14 @@ static void	print_path(t_path *path)
 
 void		print_ants(t_env *e)
 {
-	t_file	*tmp;
+	//t_file	*tmp;
 
-	tmp = ANTHILL;
+	/*tmp = ANTHILL;
 	while (tmp)
 	{
 		printf("%s\n", tmp->str);
 		tmp = tmp->next;
-	}
+	}*/
 	print_path(PATH);
 //	print_path(INVPATH);
 	delete_file(&ANTHILL);
