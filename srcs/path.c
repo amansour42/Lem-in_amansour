@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 12:14:44 by amansour          #+#    #+#             */
-/*   Updated: 2017/12/04 11:59:49 by amansour         ###   ########.fr       */
+/*   Updated: 2017/12/04 15:59:11 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,33 +48,32 @@ static t_link	*right_room(t_env *e, t_link *link)
 	return (tmp);
 }
 
-static t_link	*ft_path(t_env *e, t_link **link)
+static void		ft_path(t_env *e, t_link **link, t_link **l)
 {
-	t_link	*l;
 	t_link	*tmp;
 	t_link	*ptmp;
+	int		i;
 
-	l = NULL;
+	i = 2;
 	if (!(tmp = right_room(e, *link)))
 	{
 		(*link)->pass = 1;
-		return (NULL);
+		return ;
 	}
-	add_link(&l, (*link)->name);
-	add_link(&l, tmp->name);
-	while (tmp && tmp->name && ft_strcmp(tmp->name, END))
+	add_link(l, tmp->name);
+	while (tmp && ft_strcmp(tmp->name, END) && i <= e->long_path)
 	{
 		ptmp = tmp;
 		tmp = find_room(e, tmp->name)->link;
-		while (tmp && (tmp->pass || exist_already(l, tmp->name)
+		while (tmp && (tmp->pass || exist_already(*l, tmp->name)
 					|| !ft_strcmp(tmp->name, START)))
 			tmp = tmp->next;
-		(tmp) ? add_link(&l, tmp->name) : 0;
+		(tmp) ? add_link(l, tmp->name) : 0;
+		++i;
 	}
-	(tmp && ft_strcmp(tmp->name, END)) ? tmp->pass = 1 : 0;
-	(!tmp || !ft_strcmp(tmp->name, END)) ? reinitialisation(e, ptmp) : 0;
-	(!tmp || !ft_strcmp(tmp->name, END)) ? ptmp->pass = 1 : 0;
-	return (l);
+	(tmp) ? tmp->pass = 1 : 0;
+	(!tmp || !ft_strcmp(END, tmp->name)) ? ptmp->pass = 1 : 0;
+	(!tmp || !ft_strcmp(END, tmp->name)) ? reinitialisation(e, ptmp) : 0;
 }
 
 void			find_path(t_env *e)
@@ -82,22 +81,27 @@ void			find_path(t_env *e)
 	t_link	*l;
 	t_link	*tmp;
 
-	l = NULL;
-	tmp = find_room(e, START)->link;
-	while (tmp)
+	while (!PATH && e->long_path < length_room(R))
 	{
-		if (!ft_strcmp(tmp->name, END))
+		tmp = find_room(e, START)->link;
+		while (tmp)
 		{
-			add_link(&l, END);
-			add_path(&PATH, l);
+			while (!(tmp->pass))
+			{
+				l = NULL;
+				add_link(&l, tmp->name);
+				ft_path(e, &tmp, &l);
+				(exist_already(l, END)) ? add_path(&PATH, l) : delete_link(&l);
+			}
+			reinitialisation(e, tmp);
 			tmp = tmp->next;
 		}
-		while (tmp && !(tmp->pass))
+		l = find_room(e, START)->link;
+		while (l)
 		{
-			l = ft_path(e, &tmp);
-			(exist_already(l, END)) ? add_path(&PATH, l) : delete_link(&l);
+			l->pass = 0;
+			l = l->next;
 		}
-		(tmp) ? reinitialisation(e, tmp) : 0;
-		(tmp) ? tmp = tmp->next : 0;
+		(!PATH) ? e->long_path += 1 : 0;
 	}
 }

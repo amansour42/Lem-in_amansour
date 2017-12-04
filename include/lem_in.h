@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/10 14:55:04 by amansour          #+#    #+#             */
-/*   Updated: 2017/12/04 11:12:09 by amansour         ###   ########.fr       */
+/*   Updated: 2017/12/04 14:09:40 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ typedef struct			s_file
 typedef struct		s_link
 {
 	char			*name;
-    int             pass;
-    struct s_link	*next;
+	int				pass;
+	struct s_link	*next;
 }					t_link;
 
 typedef struct		s_path
@@ -77,6 +77,7 @@ typedef struct		s_env
 	t_path			*path;
 	t_path			*invpath;
 	int				flag;
+	int				long_path;
 }					t_env;
 
 int					main(void);
@@ -106,7 +107,7 @@ int					ft_error(char *str);
 void				fill_room(t_env *e, char *str, int end);
 void				delete_room(t_room **r);
 t_room				*find_room(t_env *e, char *line);
-
+int					length_room(t_room *r);
 /*
 ** map
 */

@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/30 11:39:17 by amansour          #+#    #+#             */
-/*   Updated: 2017/12/04 11:28:28 by amansour         ###   ########.fr       */
+/*   Updated: 2017/12/04 14:08:41 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,19 @@ t_room		*find_room(t_env *e, char *str)
 		r = r->next;
 	}
 	return (NULL);
+}
+
+int			length_room(t_room *r)
+{
+	int		n;
+	t_room	*tmp;
+
+	n = 0;
+	tmp = r;
+	while (tmp)
+	{
+		++n;
+		tmp = tmp->next;
+	}
+	return (n);
 }

@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 12:08:21 by amansour          #+#    #+#             */
-/*   Updated: 2017/12/01 10:50:19 by amansour         ###   ########.fr       */
+/*   Updated: 2017/12/04 15:38:33 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,5 @@ void	init_map(t_env *e)
 	ANTHILL = NULL;
 	START = NULL;
 	END = NULL;
+	e->long_path = 2;
 }

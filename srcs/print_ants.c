@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 14:53:11 by amansour          #+#    #+#             */
-/*   Updated: 2017/12/04 12:02:22 by amansour         ###   ########.fr       */
+/*   Updated: 2017/12/04 14:28:41 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,14 @@ static void	print_path(t_path *path)
 
 void		print_ants(t_env *e)
 {
-	t_file	*tmp;
+/*	t_file	*tmp;
 
 	tmp = ANTHILL;
 	while (tmp)
 	{
 		printf("%s\n", tmp->str);
 		tmp = tmp->next;
-	}
+	}*/
 	print_path(PATH);
 	clean(e);
 }
