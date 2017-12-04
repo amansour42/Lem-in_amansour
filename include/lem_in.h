@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/10 14:55:04 by amansour          #+#    #+#             */
-/*   Updated: 2017/12/04 14:09:40 by amansour         ###   ########.fr       */
+/*   Updated: 2017/12/04 16:51:22 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,6 @@ typedef struct		s_room
 	int				y;
 	struct s_room	*next;
 	t_link			*link;
-	int				start;
-	int				end;
 }					t_room;
 
 typedef struct		s_env
@@ -78,9 +76,14 @@ typedef struct		s_env
 	t_path			*invpath;
 	int				flag;
 	int				long_path;
+	int				color;
+	int				display;
+	int				help;
+	int				no_map;
+	int				no_move;
 }					t_env;
 
-int					main(void);
+int					main(int ac, char **av);
 void				clean(t_env *e);
 /*
 ** checking
@@ -99,7 +102,8 @@ int					length(char **str);
 */
 
 int					ft_error(char *str);
-
+void				ft_usage(void);
+void				ft_error_format(void);
 /*
 ** room
 */
@@ -144,4 +148,8 @@ void				find_path(t_env *e);
 void				add_path(t_path **p, t_link *l);
 int					length_path(t_link *l);
 void				delete_path(t_path **path);
+/*
+** flags
+*/
+void				check_flags(t_env *e, char **av, int ac);
 #endif
