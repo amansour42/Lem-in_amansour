@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 12:14:44 by amansour          #+#    #+#             */
-/*   Updated: 2017/12/04 15:59:11 by amansour         ###   ########.fr       */
+/*   Updated: 2017/12/04 16:07:23 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void			find_path(t_env *e)
 	t_link	*l;
 	t_link	*tmp;
 
-	while (!PATH && e->long_path < length_room(R))
+	while (!PATH && e->long_path <= length_room(R))
 	{
 		tmp = find_room(e, START)->link;
 		while (tmp)
@@ -94,13 +94,8 @@ void			find_path(t_env *e)
 				(exist_already(l, END)) ? add_path(&PATH, l) : delete_link(&l);
 			}
 			reinitialisation(e, tmp);
+			tmp->pass = 0;
 			tmp = tmp->next;
-		}
-		l = find_room(e, START)->link;
-		while (l)
-		{
-			l->pass = 0;
-			l = l->next;
 		}
 		(!PATH) ? e->long_path += 1 : 0;
 	}
