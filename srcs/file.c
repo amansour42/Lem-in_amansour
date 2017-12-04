@@ -6,19 +6,19 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/30 11:34:43 by amansour          #+#    #+#             */
-/*   Updated: 2017/11/30 11:34:49 by amansour         ###   ########.fr       */
+/*   Updated: 2017/12/04 11:32:57 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int		ft_iscomment(char *line)
+int			ft_iscomment(char *line)
 {
 	return (line[0] == '#' && ft_strcmp(line, "##start")
 			&& ft_strcmp(line, "##end"));
 }
 
-void	add_to_file(t_env *e, char *line)
+void		add_to_file(t_env *e, char *line)
 {
 	t_file *c1;
 	t_file *c2;
@@ -40,18 +40,15 @@ void	add_to_file(t_env *e, char *line)
 	return ;
 }
 
-static void	delete_first(t_file **c)
+void		delete_file(t_file **c)
 {
-	t_file *tmp;
+	t_file *file;
 
-	tmp = *c;
-	*c = (*c)->next;
-	free(tmp->str);
-	free(tmp);
-}
-
-void	delete_file(t_file **c)
-{
 	while (*c)
-		delete_first(c);
+	{
+		file = *c;
+		*c = (*c)->next;
+		free(file->str);
+		free(file);
+	}
 }

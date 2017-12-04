@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 14:46:57 by amansour          #+#    #+#             */
-/*   Updated: 2017/11/30 16:23:39 by amansour         ###   ########.fr       */
+/*   Updated: 2017/12/04 12:01:59 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,28 +38,16 @@ static void	add_room(t_env *e, int x, int y, char *str)
 	return ;
 }
 
-int			length(char **str)
-{
-	int i;
-
-	i = 0;
-	while (str[i])
-		++i;
-	return (i);
-}
-
 void		clean_split(char **s)
 {
-	int		nbr;
-
-	nbr = length(s);
 	free(s[0]);
 	free(s[1]);
-	free(s[2]);
+	if (s[2])
+		free(s[2]);
 	free(s);
 }
 
-static void		treat_error(t_env *e, char **s)
+static void	treat_error(t_env *e, char **s)
 {
 	delete_room(&R);
 	delete_file(&ANTHILL);
@@ -90,5 +78,4 @@ void		fill_room(t_env *e, char *str, int flag)
 		START = ft_strdup(s[0]);
 	add_room(e, x, y, s[0]);
 	clean_split(s);
-	free(str);
 }

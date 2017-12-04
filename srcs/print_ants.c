@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 14:53:11 by amansour          #+#    #+#             */
-/*   Updated: 2017/12/01 16:57:39 by amansour         ###   ########.fr       */
+/*   Updated: 2017/12/04 12:02:22 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,13 @@ static void	print_path(t_path *path)
 {
 	t_path	*p;
 	t_link	*l;
+	int		i;
 
+	i = 0;
 	p = path;
 	while (p)
 	{
+		++i;
 		l = p->link;
 		printf("LONGPATH : \033[34m%d\n", p->len);
 		while (l)
@@ -31,22 +34,19 @@ static void	print_path(t_path *path)
 		}
 		p = p->next;
 	}
+	printf("NBR OF PATH = \033[34m%d\n\033[0m", i);
 }
 
 void		print_ants(t_env *e)
 {
-	//t_file	*tmp;
+	t_file	*tmp;
 
-	/*tmp = ANTHILL;
+	tmp = ANTHILL;
 	while (tmp)
 	{
 		printf("%s\n", tmp->str);
 		tmp = tmp->next;
-	}*/
+	}
 	print_path(PATH);
-//	print_path(INVPATH);
-	delete_file(&ANTHILL);
-	delete_room(&R);
-	free(START);
-	free(END);
+	clean(e);
 }

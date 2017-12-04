@@ -6,13 +6,13 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/30 11:38:59 by amansour          #+#    #+#             */
-/*   Updated: 2017/12/01 14:41:45 by amansour         ###   ########.fr       */
+/*   Updated: 2017/12/04 11:27:46 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	check_nbr_ants(t_env *e)
+void		check_nbr_ants(t_env *e)
 {
 	char *line;
 
@@ -35,12 +35,11 @@ char		*check_room(t_env *e)
 	{
 		if (!get_next_line(0, &line))
 		{
-			delete_room(&R);
-			delete_file(&ANTHILL);
-			ft_error("INVALIDMAP");
+			clean(e);
+			ft_error(INVALIDMAP);
 		}
 		if (ft_strchr(line, '-'))
-			break;
+			break ;
 		add_to_file(e, line);
 		if (!ft_iscomment(line))
 		{
@@ -49,23 +48,20 @@ char		*check_room(t_env *e)
 			(!flag) ? fill_room(e, line, last_flag) : 0;
 			last_flag = flag;
 		}
-		//free(line);
+		free(line);
 	}
 	return (line);
 }
 
-t_room		*find_room(t_env *e, char *str)
+void		clean(t_env *e)
 {
-	t_room *r;
-
-	r  = R;
-	while (r)
-	{
-		if (!ft_strcmp(r->name, str))
-			return (r);
-		r = r->next;
-	}
-	return (r);
+	delete_room(&R);
+	delete_file(&ANTHILL);
+	if (START)
+		free(START);
+	if (END)
+		free(END);
+	delete_path(&PATH);
 }
 
 void		check_link(t_env *e, char *line)
@@ -79,17 +75,14 @@ void		check_link(t_env *e, char *line)
 		add_to_file(e, line);
 		if (!ft_iscomment(line))
 		{
-			s = ft_strsplit(line , '-');
-			if (!(r1 = find_room(e, s[0])) || !(r2 = find_room(e, s[1])))
+			s = ft_strsplit(line, '-');
+			if (!(r1 = find_room(e, s[0])) || !find_room(e, s[1]))
 			{
 				clean_split(s);
-				delete_room(&R);
-				delete_file(&ANTHILL);
-				delete_room(&R);
-				free(START);
-				free(END);
+				clean(e);
 				ft_error(INVALIDLINK);
 			}
+			r2 = find_room(e, s[1]);
 			add_link(&(r1->link), r2->name);
 			add_link(&(r2->link), r1->name);
 			clean_split(s);

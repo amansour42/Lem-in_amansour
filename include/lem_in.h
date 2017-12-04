@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/10 14:55:04 by amansour          #+#    #+#             */
-/*   Updated: 2017/12/01 16:11:53 by amansour         ###   ########.fr       */
+/*   Updated: 2017/12/04 11:12:09 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,11 @@ typedef struct		s_env
 }					t_env;
 
 int					main(void);
+void				clean(t_env *e);
 /*
- ** checking
- */
+** checking
+*/
+
 void				check_nbr_ants(t_env *e);
 char				*check_room(t_env *e);
 int					check_end(t_env *e, char *line);
@@ -90,39 +92,55 @@ void				check_map(t_env *e, char *line);
 void				check_link(t_env *e, char *str);
 void				clean_split(char **str);
 int					length(char **str);
+
 /*
- ** error
- */
+** error
+*/
+
 int					ft_error(char *str);
+
 /*
- ** room
- */
+** room
+*/
+
 void				fill_room(t_env *e, char *str, int end);
 void				delete_room(t_room **r);
 t_room				*find_room(t_env *e, char *line);
+
 /*
- ** map
- */
+** map
+*/
+
 void				init_map(t_env *env);
+
 /*
- ** extra
- */
+** extra
+*/
+
 void				print_ants(t_env *e);
+
 /*
- ** comment
- */
+** comment
+*/
+
 void				add_to_file(t_env *e, char *line);
 int					ft_iscomment(char *line);
 void				delete_first_file(t_file **f);
 void				delete_file(t_file **f);
+
 /*
- ** link
- */
+** link
+*/
+
 void				delete_link(t_link **link);
 void				add_link(t_link **link, char *str);
+
 /*
- ** PATH
- */
+** PATH
+*/
+
 void				find_path(t_env *e);
-void				find_inverse_path(t_env *e);
+void				add_path(t_path **p, t_link *l);
+int					length_path(t_link *l);
+void				delete_path(t_path **path);
 #endif

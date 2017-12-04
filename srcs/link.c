@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/30 11:39:47 by amansour          #+#    #+#             */
-/*   Updated: 2017/11/30 16:43:55 by amansour         ###   ########.fr       */
+/*   Updated: 2017/12/04 11:33:40 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void		add_link(t_link **tube, char *str)
 	if ((tmp = (t_link*)malloc(sizeof(t_link))))
 	{
 		tmp->name = ft_strdup(str);
-        tmp->pass = 0;
+		tmp->pass = 0;
 		tmp->next = NULL;
 		if (!*tube)
 			*tube = tmp;
