@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 14:53:11 by amansour          #+#    #+#             */
-/*   Updated: 2017/12/04 18:15:08 by amansour         ###   ########.fr       */
+/*   Updated: 2017/12/05 11:11:06 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,36 +17,50 @@ static void	print_path(t_path *path, t_env *e)
 	t_path	*p;
 	t_link	*l;
 	int		i;
+	int		j;
 
 	i = 0;
 	p = path;
+	j = (e->color) ? 5 : 0;
 	while (p)
 	{
 		++i;
 		l = p->link;
-		printf("LONGPATH : \033[34m%d\033[0m\n", e->long_path);
 		while (l)
 		{
-			printf("\033[32m%s\033[0m", l->name);
+			write(1, "\033[32m", j);
+			write(1, l->name, ft_strlen(l->name));
+			write(1, "\033[0m", j);
 			l = l->next;
-			(l) ? printf("\033[31m--->") : 0;
-			(!l) ? printf("\n") : 0;
+			(l) ? write(1, "\033[31m", j) : 0;
+			(l) ? write(1, "--->", 4) : 0;
+			(!l) ? write(1, "\n", 1) : 0;
 		}
+		printf("\n");
 		p = p->next;
 	}
-	printf("NBR OF PATH = \033[34m%d\n\033[0m", i);
 }
 
-void		print_ants(t_env *e)
+static void	print_map(t_file *file)
 {
-/*	t_file	*tmp;
+	t_file	*tmp;
 
-	tmp = ANTHILL;
+	tmp = file;
 	while (tmp)
 	{
 		printf("%s\n", tmp->str);
 		tmp = tmp->next;
-	}*/
-	print_path(PATH, e);
+	}
+	printf("\n");
+}
+
+void		print_ants(t_env *e)
+{
+	if (!e->no_map)
+		print_map(ANTHILL);
+	if (e->display)
+		print_path(PATH, e);
+	if (!e->no_move)
+		print_move(e);
 	clean(e);
 }

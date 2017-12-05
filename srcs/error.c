@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/30 11:39:35 by amansour          #+#    #+#             */
-/*   Updated: 2017/12/04 17:02:15 by amansour         ###   ########.fr       */
+/*   Updated: 2017/12/05 10:10:34 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,9 @@ void	ft_error_format(void)
 {
 	printf("options:\n\t-h --help : to read the manual");
 	printf("\n\t-q --quiet_map : to hide map");
-	printf("\n\t-Q --quiet_moves : to hide ants moves");
-	printf("\n\t-l --lines : to display number of move lines");
-	printf("\n\t-c --colors : to display start/end in green/red");
+	printf("\n\t-Q --quiet_moves : to hide ants\' moves");
+	printf("\n\t-c --colors : to display start/end in blue/red");
 	printf("\n\t-d --selected_paths : to display selected paths");
-	printf("\n\t##follow --follow up to four rooms : colors must be enable");
-	printf("\n\t##ants --name a list of ants : name1-name2-name3\n");
 	exit(0);
 }
 

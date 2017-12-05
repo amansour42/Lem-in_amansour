@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/10 14:55:04 by amansour          #+#    #+#             */
-/*   Updated: 2017/12/04 16:51:22 by amansour         ###   ########.fr       */
+/*   Updated: 2017/12/05 10:53:20 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ typedef struct		s_env
 	int				long_path;
 	int				color;
 	int				display;
-	int				help;
 	int				no_map;
 	int				no_move;
 }					t_env;
@@ -121,7 +120,7 @@ void				init_map(t_env *env);
 /*
 ** extra
 */
-
+void				print_move(t_env *e);
 void				print_ants(t_env *e);
 
 /*
