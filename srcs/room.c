@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 14:46:57 by amansour          #+#    #+#             */
-/*   Updated: 2017/12/04 12:01:59 by amansour         ###   ########.fr       */
+/*   Updated: 2017/12/05 15:02:00 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,18 @@ static void	treat_error(t_env *e, char **s)
 	ft_error(WRONGROOM);
 }
 
+static int	ft_isnumber(char *s)
+{
+	int i;
+
+	i = 0;
+	while (s[i] && ft_isdigit(s[i]))
+		++i;
+	if (!s[i])
+		return (1);
+	return (0);
+}
+
 void		fill_room(t_env *e, char *str, int flag)
 {
 	char	**s;
@@ -69,8 +81,10 @@ void		fill_room(t_env *e, char *str, int flag)
 		ft_error(INVALIDMAP);
 	}
 	s = ft_strsplit(str, ' ');
-	if ((((x = ft_atoi(s[1])) == -1) && ft_strcmp(s[1], "-1"))
-		|| (((y = ft_atoi(s[2])) == -1) && ft_strcmp(s[2], "-1")))
+
+	if (!ft_isnumber(s[1]) || !ft_isnumber(s[2]) || (((x = ft_atoi(s[1])) == -1)
+				&& ft_strcmp(s[1], "-1")) || (((y = ft_atoi(s[2])) == -1)
+				&& ft_strcmp(s[2], "-1")))
 		treat_error(e, s);
 	if (flag & 4)
 		END = ft_strdup(s[0]);

@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/30 11:38:59 by amansour          #+#    #+#             */
-/*   Updated: 2017/12/04 11:27:46 by amansour         ###   ########.fr       */
+/*   Updated: 2017/12/05 15:04:22 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,9 @@ void		check_link(t_env *e, char *line)
 		if (!ft_iscomment(line))
 		{
 			s = ft_strsplit(line, '-');
-			if (!(r1 = find_room(e, s[0])) || !find_room(e, s[1]))
+			if (!s[0] || !(r1 = find_room(e, s[0])) || !find_room(e, s[1]))
 			{
-				clean_split(s);
+				(s[0]) ? clean_split(s) : free(s);
 				clean(e);
 				ft_error(INVALIDLINK);
 			}

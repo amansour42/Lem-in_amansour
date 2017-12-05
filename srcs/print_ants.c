@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 14:53:11 by amansour          #+#    #+#             */
-/*   Updated: 2017/12/05 14:03:54 by amansour         ###   ########.fr       */
+/*   Updated: 2017/12/05 14:42:22 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,11 @@ static void	print_map(t_file *file)
 
 void		print_ants(t_env *e)
 {
+	if (!PATH)
+	{
+		clean(e);
+		ft_error("\033[31mERROR\033[0m\n");
+	}
 	if (!e->no_map)
 		print_map(ANTHILL);
 	if (e->display)

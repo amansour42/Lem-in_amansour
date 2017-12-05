@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 10:25:20 by amansour          #+#    #+#             */
-/*   Updated: 2017/12/05 14:06:13 by amansour         ###   ########.fr       */
+/*   Updated: 2017/12/05 14:41:09 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,13 @@ void		print_move(t_env *e)
 		while (++i <= nbr)
 		{
 			if (str[i])
-				ft_printf("L%d-%s", i + 1, str[i]);
-				(j) ? write(1, "\033[0m", 4) : 0;
+				ft_printf("L%d-", i + 1);
+			if (str[i] && !ft_strcmp(str[i], END) && e->color)
+				ft_printf("\033[31m%s\033[0m", str[i]);
+			else if (str[i] && e->color)
+				ft_printf("\033[32m%s\033[0m", str[i]);
+			else if (str[i])
+				ft_printf("%s", str[i]);
 			(str[i] && i < nbr) ? ft_printf(" ") : 0;
 		}
 		(!empty(str, e)) ? ft_printf("\n") : 0;
