@@ -63,20 +63,22 @@ static void		ft_path(t_env *e, t_link **link, t_link **l)
 		(*link)->pass = 1;
 		return ;
 	}
-	add_link(l, tmp->name);
-	while (tmp && ft_strcmp(tmp->name, END) && i <= e->long_path)
+    add_link(l, tmp->name);
+    ptmp = NULL;
+	while (tmp && ft_strcmp(tmp->name, END) && i < e->long_path)
 	{
 		ptmp = tmp;
 		tmp = find_room(e, tmp->name)->link;
 		while (tmp && (tmp->pass || exist_already(*l, tmp->name)
 					|| !ft_strcmp(tmp->name, START)))
 			tmp = tmp->next;
+       
 		(tmp) ? add_link(l, tmp->name) : 0;
 		++i;
 	}
 	(tmp) ? tmp->pass = 1 : 0;
-	(!tmp || !ft_strcmp(END, tmp->name)) ? ptmp->pass = 1 : 0;
-	(!tmp || !ft_strcmp(END, tmp->name)) ? reinitialisation(e, ptmp) : 0;
+	((!tmp || !ft_strcmp(END, tmp->name)) && ptmp) ? ptmp->pass = 1 : 0;
+	((!tmp || !ft_strcmp(END, tmp->name)) && ptmp) ? reinitialisation(e, ptmp) : 0;
 }
 
 void			find_path(t_env *e)
