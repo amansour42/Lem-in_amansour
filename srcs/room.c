@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 14:46:57 by amansour          #+#    #+#             */
-/*   Updated: 2017/12/05 15:02:00 by amansour         ###   ########.fr       */
+/*   Updated: 2017/12/05 15:44:22 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ void		fill_room(t_env *e, char *str, int flag)
 		ft_error(INVALIDMAP);
 	}
 	s = ft_strsplit(str, ' ');
-
 	if (!ft_isnumber(s[1]) || !ft_isnumber(s[2]) || (((x = ft_atoi(s[1])) == -1)
 				&& ft_strcmp(s[1], "-1")) || (((y = ft_atoi(s[2])) == -1)
 				&& ft_strcmp(s[2], "-1")))

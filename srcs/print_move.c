@@ -6,14 +6,13 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 10:25:20 by amansour          #+#    #+#             */
-/*   Updated: 2017/12/05 14:41:09 by amansour         ###   ########.fr       */
+/*   Updated: 2017/12/05 15:52:00 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-
-static char		*link_next(char *str, t_link *link)
+static char	*link_next(char *str, t_link *link)
 {
 	t_link *l;
 
@@ -25,7 +24,7 @@ static char		*link_next(char *str, t_link *link)
 	return (NULL);
 }
 
-static void		reinitialisate_position(char *str[], t_link *link, t_env *e)
+static void	reinitialisate_position(char *str[], t_link *link, t_env *e)
 {
 	int i;
 
@@ -53,9 +52,20 @@ static int	empty(char *str[], t_env *e)
 	return (0);
 }
 
+static void	print_one_move(char *str, t_env *e, int i)
+{
+	if (str)
+		ft_printf("L%d-", i + 1);
+	if (str && !ft_strcmp(str, END) && e->color)
+		ft_printf("\033[31m%s\033[0m", str);
+	else if (str && e->color)
+		ft_printf("\033[32m%s\033[0m", str);
+	else if (str)
+		ft_printf("%s", str);
+}
+
 void		print_move(t_env *e)
 {
-
 	int		nbr;
 	char	*str[A];
 	int		i;
@@ -73,14 +83,7 @@ void		print_move(t_env *e)
 		reinitialisate_position(str, PATH->link, e);
 		while (++i <= nbr)
 		{
-			if (str[i])
-				ft_printf("L%d-", i + 1);
-			if (str[i] && !ft_strcmp(str[i], END) && e->color)
-				ft_printf("\033[31m%s\033[0m", str[i]);
-			else if (str[i] && e->color)
-				ft_printf("\033[32m%s\033[0m", str[i]);
-			else if (str[i])
-				ft_printf("%s", str[i]);
+			print_one_move(str[i], e, i);
 			(str[i] && i < nbr) ? ft_printf(" ") : 0;
 		}
 		(!empty(str, e)) ? ft_printf("\n") : 0;

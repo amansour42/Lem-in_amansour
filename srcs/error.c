@@ -6,13 +6,13 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/30 11:39:35 by amansour          #+#    #+#             */
-/*   Updated: 2017/12/05 10:10:34 by amansour         ###   ########.fr       */
+/*   Updated: 2017/12/05 15:51:12 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int	ft_error(char *str)
+int		ft_error(char *str)
 {
 	ft_putstr(str);
 	exit(0);

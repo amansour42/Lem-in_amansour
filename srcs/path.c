@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 12:14:44 by amansour          #+#    #+#             */
-/*   Updated: 2017/12/05 15:04:52 by amansour         ###   ########.fr       */
+/*   Updated: 2017/12/05 15:46:06 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void		reinitialisation(t_env *e, t_link *link)
 
 static t_link	*right_room(t_env *e, t_link *link)
 {
-	t_link *tmp;
+	t_link	*tmp;
 	t_room	*r;
 
 	if (!(r = find_room(e, link->name)))
