@@ -6,7 +6,7 @@
 #    By: amansour <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/30 10:19:33 by amansour          #+#    #+#              #
-#    Updated: 2017/12/05 10:53:56 by amansour         ###   ########.fr        #
+#    Updated: 2017/12/05 13:52:22 by amansour         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,12 +14,14 @@ NAME = lem_in
 
 LDFLAGS_LIB = -L libft
 LDLIBS = -lft
+LDFLAGS_PRINTF = -L libprint
+LDLIBSPRINTF = -lprint
 FLAGS = -Werror -Wall -Wextra
-
 SRC_PATH = ./srcs
 OBJ_PATH = ./obj
 INCLUD  = ./include
 LIB = libft/libft.a
+LIBPRINTF = libprint/libp.a
 
 SRC = checking.c delete_rooms.c file.c error.c link.c\
 	main.c map.c print_ants.c room.c path.c path2.c flags.c print_move.c\
@@ -28,12 +30,15 @@ OBJ = $(addprefix $(OBJ_PATH)/,$(SRC:.c=.o))
 
 all: $(NAME)
 
-$(NAME): $(LIB) $(OBJ)
-	@gcc $(OBJ) $(LDFLAGS_LIB) $(LDLIBS)  -o $(NAME)
-	@echo "\033[1;7;34mLEM_IN\t\033[1;7;33mCompilation\t\033[0m👌"
+$(NAME): $(LIB) $(LIBPRINTF) $(OBJ)
+	@gcc $(OBJ) $(LDFLAGS_LIB) $(LDLIBS) $(LDFLAGS_PRINTF) $(LDLIBSPRINTF) -o $(NAME)
+	@echo "\033[1;7;34mLEM_IN\t\t\033[1;7;33mCOMPILATION\t\033[0m👌"
 
 $(LIB):
 	@make -C libft
+
+$(LIBPRINTF):
+	@make -C libprint
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 	@mkdir -p $(OBJ_PATH)
@@ -42,9 +47,11 @@ $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 clean:
 	@rm -rf $(OBJ)
 	@rm -rf $(OBJ_PATH)
+	@echo "\033[1;7;34mLEM_IN\t\t\033[1;7;33mCLEANING\t\033[0m👌"
 	@make -C libft clean
+	@make -C libprint clean
 
 fclean: clean
-	@rm -f $(NAME) $(LIB)
-
+	@echo "\033[1;7;34mLEM_IN\t\t\033[1;7;33mFCLEANING\t\033[0m👌"
+	@rm -f $(NAME) $(LIB) $(LIBPRINTF)
 re: fclean all

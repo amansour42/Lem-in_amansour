@@ -6,7 +6,7 @@
 #    By: amansour <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/01 12:36:18 by amansour          #+#    #+#              #
-#    Updated: 2017/11/30 15:42:26 by amansour         ###   ########.fr        #
+#    Updated: 2017/12/05 13:56:52 by amansour         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,11 +37,13 @@ $(NAME) :
 	@gcc $(FLAGS) -c $(SRC) -I $(INCLUDS)
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
-
+	@echo "\033[1;7;34mLIBFT\t\t\033[1;7;33mCOMPILATION\t\033[0m👌 "
 clean:
 	@rm -rf $(OBJ)
+	@echo "\033[1;7;34mLIBFT\t\t\033[1;7;33mCLEANING\t\033[0m👌 "
 
 fclean: clean
-	@rm -f $(NAME)
+		@rm -f $(NAME)
+	@echo "\033[1;7;34mLIBFT\t\t\033[1;7;33mFCLEANING\t\033[0m👌 "
 
 re: fclean all

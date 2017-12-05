@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 10:25:20 by amansour          #+#    #+#             */
-/*   Updated: 2017/12/05 11:43:22 by amansour         ###   ########.fr       */
+/*   Updated: 2017/12/05 14:06:13 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,10 @@ void		print_move(t_env *e)
 		while (++i <= nbr)
 		{
 			if (str[i])
-				printf("L%d-%s", i + 1, str[i]);
+				ft_printf("L%d-%s", i + 1, str[i]);
 				(j) ? write(1, "\033[0m", 4) : 0;
-			(str[i] && i < nbr) ? printf(" ") : 0;
+			(str[i] && i < nbr) ? ft_printf(" ") : 0;
 		}
-		printf("\n");
+		(!empty(str, e)) ? ft_printf("\n") : 0;
 	}
 }

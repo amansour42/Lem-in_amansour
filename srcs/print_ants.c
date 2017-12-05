@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 14:53:11 by amansour          #+#    #+#             */
-/*   Updated: 2017/12/05 11:11:06 by amansour         ###   ########.fr       */
+/*   Updated: 2017/12/05 14:03:54 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,8 @@ static void	print_path(t_path *path, t_env *e)
 			l = l->next;
 			(l) ? write(1, "\033[31m", j) : 0;
 			(l) ? write(1, "--->", 4) : 0;
-			(!l) ? write(1, "\n", 1) : 0;
 		}
-		printf("\n");
+		ft_printf("\n");
 		p = p->next;
 	}
 }
@@ -48,10 +47,10 @@ static void	print_map(t_file *file)
 	tmp = file;
 	while (tmp)
 	{
-		printf("%s\n", tmp->str);
+		ft_printf("%s\n", tmp->str);
 		tmp = tmp->next;
 	}
-	printf("\n");
+	ft_printf("\n");
 }
 
 void		print_ants(t_env *e)

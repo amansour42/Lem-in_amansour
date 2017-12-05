@@ -6,13 +6,14 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/10 14:55:04 by amansour          #+#    #+#             */
-/*   Updated: 2017/12/05 10:53:20 by amansour         ###   ########.fr       */
+/*   Updated: 2017/12/05 13:39:49 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEM_IN_H
 # define LEM_IN_H
 # include "../libft/libft.h"
+# include "../libprint/includes/ft_printf.h"
 # include <stdlib.h>
 # include <stdio.h>
 # include <libC.h>
