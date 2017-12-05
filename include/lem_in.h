@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/10 14:55:04 by amansour          #+#    #+#             */
-/*   Updated: 2017/12/05 13:39:49 by amansour         ###   ########.fr       */
+/*   Updated: 2017/12/05 15:54:20 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 # include "../libft/libft.h"
 # include "../libprint/includes/ft_printf.h"
 # include <stdlib.h>
-# include <stdio.h>
-# include <libC.h>
 
 # define A				e->a_nbr
 # define R				e->r
@@ -27,8 +25,8 @@
 # define PATH			e->path
 # define LINK			e->path->link
 # define INVPATH		e->invpath
-# define INVLINK		e->invpath->link
-#define ANTNBR			"ANTS' NUMBER ERROR!\n"
+# define INVLINK		e->invpath->LINK
+# define ANTNBR			"ANTS' NUMBER ERROR!\n"
 # define INVALIDMAP		"INVALID MAP\n"
 # define NOSTART		"NO COMMAND START\n"
 # define NOEND			"NO COMMAND END\n"
@@ -36,11 +34,11 @@
 # define INVALIDLINK	"INVALID LINK\n"
 # define NOLINKS		"NOLINKS\n"
 
-typedef struct			s_file
+typedef struct		s_file
 {
-	char				*str;
-	struct s_file		*next;
-}						t_file;
+	char			*str;
+	struct s_file	*next;
+}					t_file;
 
 typedef struct		s_link
 {
