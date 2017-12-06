@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 12:14:44 by amansour          #+#    #+#             */
-/*   Updated: 2017/12/05 15:46:06 by amansour         ###   ########.fr       */
+/*   Updated: 2017/12/06 09:19:17 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int		exist_already(t_link *link, char *end)
 	return (0);
 }
 
-static void		reinitialisation(t_env *e, t_link *link)
+static void		reinit(t_env *e, t_link *link)
 {
 	t_link	*l;
 
@@ -63,8 +63,8 @@ static void		ft_path(t_env *e, t_link **link, t_link **l)
 		(*link)->pass = 1;
 		return ;
 	}
-    add_link(l, tmp->name);
-    ptmp = NULL;
+	add_link(l, tmp->name);
+	ptmp = NULL;
 	while (tmp && ft_strcmp(tmp->name, END) && i < e->long_path)
 	{
 		ptmp = tmp;
@@ -72,13 +72,12 @@ static void		ft_path(t_env *e, t_link **link, t_link **l)
 		while (tmp && (tmp->pass || exist_already(*l, tmp->name)
 					|| !ft_strcmp(tmp->name, START)))
 			tmp = tmp->next;
-       
 		(tmp) ? add_link(l, tmp->name) : 0;
 		++i;
 	}
 	(tmp) ? tmp->pass = 1 : 0;
 	((!tmp || !ft_strcmp(END, tmp->name)) && ptmp) ? ptmp->pass = 1 : 0;
-	((!tmp || !ft_strcmp(END, tmp->name)) && ptmp) ? reinitialisation(e, ptmp) : 0;
+	((!tmp || !ft_strcmp(END, tmp->name)) && ptmp) ? reinit(e, ptmp) : 0;
 }
 
 void			find_path(t_env *e)
@@ -98,7 +97,7 @@ void			find_path(t_env *e)
 				ft_path(e, &tmp, &l);
 				(exist_already(l, END)) ? add_path(&PATH, l) : delete_link(&l);
 			}
-			reinitialisation(e, tmp);
+			reinit(e, tmp);
 			tmp->pass = 0;
 			tmp = tmp->next;
 		}
