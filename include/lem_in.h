@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/10 14:55:04 by amansour          #+#    #+#             */
-/*   Updated: 2017/12/05 15:54:20 by amansour         ###   ########.fr       */
+/*   Updated: 2017/12/06 09:32:17 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,7 @@
 # define START			e->start
 # define PATH			e->path
 # define LINK			e->path->link
-# define INVPATH		e->invpath
-# define INVLINK		e->invpath->LINK
-# define ANTNBR			"ANTS' NUMBER ERROR!\n"
-# define INVALIDMAP		"INVALID MAP\n"
-# define NOSTART		"NO COMMAND START\n"
-# define NOEND			"NO COMMAND END\n"
-# define WRONGROOM		"WRONG ROMM'S FORMAT\n"
-# define INVALIDLINK	"INVALID LINK\n"
-# define NOLINKS		"NOLINKS\n"
+# define ERROR			"ERROR\n"
 
 typedef struct		s_file
 {
@@ -99,7 +91,7 @@ int					length(char **str);
 ** error
 */
 
-int					ft_error(char *str);
+int					ft_error(void);
 void				ft_usage(void);
 void				ft_error_format(void);
 /*
@@ -110,6 +102,7 @@ void				fill_room(t_env *e, char *str, int end);
 void				delete_room(t_room **r);
 t_room				*find_room(t_env *e, char *line);
 int					length_room(t_room *r);
+void				check_same_coor(t_env *e);
 /*
 ** map
 */

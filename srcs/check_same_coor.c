@@ -1,40 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   check_same_coor.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/30 10:29:31 by amansour          #+#    #+#             */
-/*   Updated: 2017/12/06 09:32:39 by amansour         ###   ########.fr       */
+/*   Created: 2017/12/06 09:33:42 by amansour          #+#    #+#             */
+/*   Updated: 2017/12/06 09:36:34 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int		main(int ac, char **av)
+void	check_same_coor(t_env *e)
 {
-	t_env	e;
-	char	*line;
+	t_room *r;
+	t_room *r2;
 
-	init_map(&e);
-	check_flags(&e, av, ac);
-	check_nbr_ants(&e);
-	line = check_room(&e);
-	if (!e.end || !e.start)
+	r = R;
+	while (r->next)
 	{
-		free(line);
-		delete_room(&(e.r));
-		if (e.start)
-			free(e.start);
-		else if (e.end)
-			free(e.end);
-		ft_error();
+		r2 = r->next;
+		while (r2)
+		{
+			if (r2->x == r->x && r2->y == r->y)
+			{
+				clean(e);
+				ft_error();
+			}
+			r2 = r2->next;
+		}
+		r = r->next;
 	}
-	e.r_nbr = length_room(e.r);
-	check_link(&e, line);
-	check_same_coor(&e);
-	find_path(&e);
-	print_ants(&e);
-	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/30 11:38:59 by amansour          #+#    #+#             */
-/*   Updated: 2017/12/05 15:04:22 by amansour         ###   ########.fr       */
+/*   Updated: 2017/12/06 09:23:52 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void		check_nbr_ants(t_env *e)
 	char *line;
 
 	if (!get_next_line(0, &line))
-		ft_error(INVALIDMAP);
+		ft_error();
 	if ((A = ft_atoi(line)) <= 0)
-		ft_error(ANTNBR);
+		ft_error();
 	add_to_file(e, line);
 	free(line);
 }
@@ -36,7 +36,7 @@ char		*check_room(t_env *e)
 		if (!get_next_line(0, &line))
 		{
 			clean(e);
-			ft_error(INVALIDMAP);
+			ft_error();
 		}
 		if (ft_strchr(line, '-'))
 			break ;
@@ -80,7 +80,7 @@ void		check_link(t_env *e, char *line)
 			{
 				(s[0]) ? clean_split(s) : free(s);
 				clean(e);
-				ft_error(INVALIDLINK);
+				ft_error();
 			}
 			r2 = find_room(e, s[1]);
 			add_link(&(r1->link), r2->name);

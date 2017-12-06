@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 14:46:57 by amansour          #+#    #+#             */
-/*   Updated: 2017/12/05 15:44:22 by amansour         ###   ########.fr       */
+/*   Updated: 2017/12/06 09:58:09 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,16 @@ static void	add_room(t_env *e, int x, int y, char *str)
 
 void		clean_split(char **s)
 {
-	free(s[0]);
-	free(s[1]);
-	if (s[2])
-		free(s[2]);
+	if (s[0])
+	{
+		free(s[0]);
+		if (s[1])
+		{
+			free(s[1]);
+			if (s[2])
+				free(s[2]);
+		}
+	}
 	free(s);
 }
 
@@ -52,7 +58,7 @@ static void	treat_error(t_env *e, char **s)
 	delete_room(&R);
 	delete_file(&ANTHILL);
 	clean_split(s);
-	ft_error(WRONGROOM);
+	ft_error();
 }
 
 static int	ft_isnumber(char *s)
@@ -60,6 +66,8 @@ static int	ft_isnumber(char *s)
 	int i;
 
 	i = 0;
+	if (!s)
+		return (0);
 	while (s[i] && ft_isdigit(s[i]))
 		++i;
 	if (!s[i])
@@ -78,12 +86,12 @@ void		fill_room(t_env *e, char *str, int flag)
 	if ((flag & 2 && START) || (flag & 4 && END))
 	{
 		delete_room(&R);
-		ft_error(INVALIDMAP);
+		ft_error();
 	}
 	s = ft_strsplit(str, ' ');
-	if (!ft_isnumber(s[1]) || !ft_isnumber(s[2]) || (((x = ft_atoi(s[1])) == -1)
-				&& ft_strcmp(s[1], "-1")) || (((y = ft_atoi(s[2])) == -1)
-				&& ft_strcmp(s[2], "-1")))
+	if (!s[0] || !ft_isnumber(s[1]) || !ft_isnumber(s[2])
+			|| (((x = ft_atoi(s[1])) == -1) && ft_strcmp(s[1], "-1"))
+			|| (((y = ft_atoi(s[2])) == -1) && ft_strcmp(s[2], "-1")))
 		treat_error(e, s);
 	if (flag & 4)
 		END = ft_strdup(s[0]);

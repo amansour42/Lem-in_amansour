@@ -6,11 +6,11 @@
 #    By: amansour <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/30 10:19:33 by amansour          #+#    #+#              #
-#    Updated: 2017/12/05 13:52:22 by amansour         ###   ########.fr        #
+#    Updated: 2017/12/06 09:38:51 by amansour         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = lem_in
+NAME = lem-in
 
 LDFLAGS_LIB = -L libft
 LDLIBS = -lft
@@ -25,6 +25,7 @@ LIBPRINTF = libprint/libp.a
 
 SRC = checking.c delete_rooms.c file.c error.c link.c\
 	main.c map.c print_ants.c room.c path.c path2.c flags.c print_move.c\
+	check_same_coor.c\
 
 OBJ = $(addprefix $(OBJ_PATH)/,$(SRC:.c=.o))
 

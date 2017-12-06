@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 10:25:20 by amansour          #+#    #+#             */
-/*   Updated: 2017/12/05 15:52:00 by amansour         ###   ########.fr       */
+/*   Updated: 2017/12/06 09:41:01 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void	print_one_move(char *str, t_env *e, int i)
 	if (str)
 		ft_printf("L%d-", i + 1);
 	if (str && !ft_strcmp(str, END) && e->color)
-		ft_printf("\033[31m%s\033[0m", str);
+		ft_printf("\033[34m%s\033[0m", str);
 	else if (str && e->color)
 		ft_printf("\033[32m%s\033[0m", str);
 	else if (str)

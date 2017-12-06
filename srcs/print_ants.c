@@ -6,7 +6,7 @@
 /*   By: amansour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 14:53:11 by amansour          #+#    #+#             */
-/*   Updated: 2017/12/05 14:42:22 by amansour         ###   ########.fr       */
+/*   Updated: 2017/12/06 09:46:55 by amansour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,23 @@ static void	print_path(t_path *path, t_env *e)
 	t_path	*p;
 	t_link	*l;
 	int		i;
-	int		j;
 
 	i = 0;
 	p = path;
-	j = (e->color) ? 5 : 0;
 	while (p)
 	{
 		++i;
 		l = p->link;
-		while (l)
+		while (l->next)
 		{
-			write(1, "\033[32m", j);
-			write(1, l->name, ft_strlen(l->name));
-			write(1, "\033[0m", j);
+			if (e->color)
+				ft_printf("\033[32m%s\033[31m-->\033[0m", l->name);
+			else
+				ft_printf("%s-->", l->name);
 			l = l->next;
-			(l) ? write(1, "\033[31m", j) : 0;
-			(l) ? write(1, "--->", 4) : 0;
 		}
-		ft_printf("\n");
+		(e->color) ? ft_printf("\033[34m%s\033[0m\n", END) :
+			ft_printf("%s\n", END);
 		p = p->next;
 	}
 }
@@ -58,7 +56,7 @@ void		print_ants(t_env *e)
 	if (!PATH)
 	{
 		clean(e);
-		ft_error("\033[31mERROR\033[0m\n");
+		ft_error();
 	}
 	if (!e->no_map)
 		print_map(ANTHILL);
